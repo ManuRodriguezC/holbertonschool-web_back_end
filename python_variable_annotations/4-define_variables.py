@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""This module create and note the annotations variables"""
+
 
 a: int = 1
 pi: float = 3.14
