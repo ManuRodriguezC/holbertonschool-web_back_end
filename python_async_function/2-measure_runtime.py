@@ -6,6 +6,11 @@ wait_n = __import__('1-concurrent_coroutines').wait_n
 
 
 def measure_time(n: int, max_delay: int) -> float:
+    """
+    This function give two params, n numbers for 
+    the execut and the time of the execute in wait_n.
+    And return the time of the execute
+    """
     start_time = time.process_time()
     asyncio.run(wait_n(n, max_delay))
     end_time = time.process_time()
