@@ -7,7 +7,7 @@ from typing import List
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n: int, max_delay: int) -> List[float]:
+async def wait_n(n: int, max_delay: int) -> list:
     """This function create a list of the wait random numbers"""
     lists = []
     count = 0
@@ -15,4 +15,5 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
         number = await wait_random(max_delay)
         lists.append(number)
         count += 1
+        lists.sort()
     return lists
