@@ -10,13 +10,13 @@ class BasicCache(BaseCaching):
     data will be saved using a key and a value,
     so that it can be accessed at any time.
     """
-    
+
     def put(self, key, item):
         """
         This method add dates a dictionaty caching
         through key and value.
         """
-        if key != None and item != None:
+        if key is not None and item is not None:
             self.cache_data[key] = item
 
     def get(self, key):
@@ -26,5 +26,5 @@ class BasicCache(BaseCaching):
         """
         try:
             return self.cache_data[key]
-        except:
-            KeyError(None)
+        except KeyError:
+            return None
