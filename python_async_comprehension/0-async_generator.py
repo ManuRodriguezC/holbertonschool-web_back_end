@@ -2,9 +2,10 @@
 """This module use asyncio for create funcion asyncronus"""
 import asyncio
 import random
+from typing import Generator
 
 
-async def async_generator():
+async def async_generator() ->Generator[float, None]:
     """
     This funcion generate a list of 10 values of the random number
     but with use yield, this reserved name is for create a return a value
