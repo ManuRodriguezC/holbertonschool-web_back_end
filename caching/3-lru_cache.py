@@ -1,5 +1,5 @@
-#!/usr7bin/env python3
-"""LRU cache"""
+#!/usr/bin/env python3
+"""LRU caching"""
 from base_caching import BaseCaching
 
 
@@ -12,8 +12,10 @@ class LRUCache(BaseCaching):
 
     def __init__(self):
         """
-        This method init the class and inherit
-        of the parent BaseCaching
+        This method init the class lifo
+        and add a new value, when the value exist in the
+        dictionary and change, this value save for change in the next
+        put or add new value in it.
         """
         super().__init__()
         self.list_uses = {}
@@ -66,7 +68,7 @@ class LRUCache(BaseCaching):
         """
         This method return a specific value in the
         caching collection, if not exist,
-        return None
+        return None.
         """
         try:
             if key in self.list_uses:

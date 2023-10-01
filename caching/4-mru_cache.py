@@ -1,5 +1,5 @@
-#!/user/bin/env python3
-"""MRU Cache"""
+#!/usr/bin/env python3
+"""MRU caching"""
 from base_caching import BaseCaching
 
 
@@ -10,13 +10,15 @@ class MRUCache(BaseCaching):
     delete a more recently used date.
     """
 
-    def __inti__(self):
+    def __init__(self):
         """
-        This method init the class and inherit
-        of the parent BaseCaching
+        This method init the class lifo
+        and add a new value, when the value exist in the
+        dictionary and change, this value save for change in the next
+        put or add new value in it.
         """
         super().__init__()
-        self.last_use = None
+        self.key_change = None
 
     def put(self, key, item):
         """
@@ -42,7 +44,7 @@ class MRUCache(BaseCaching):
         """
         This method return a specific value in the
         caching collection, if not exist,
-        return None
+        return None.
         """
         try:
             if key in self.cache_data:
