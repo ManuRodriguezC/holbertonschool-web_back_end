@@ -1,4 +1,4 @@
-#!/user/bin/nev python3
+#!/usr/bin/env python3
 """"""
 
 def index_range(page, page_size):
