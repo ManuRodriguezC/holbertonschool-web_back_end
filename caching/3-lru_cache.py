@@ -4,14 +4,27 @@ from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
-    """"""
+    """
+    This class acts as the algorithm LRU
+    Least recently uses, for can to add a new date, this need
+    delete a least recently used date.
+    """
 
     def __init__(self):
+        """
+        This method init the class and inherit
+        of the parent BaseCaching
+        """
         super().__init__()
         self.list_uses = {}
 
     def put(self, key, item):
-        """"""
+        """
+        This method add a new date, with differents condictions
+        if teh size is lager tha the size allowed, this method need
+        found where value is least recently used and delele this and
+        ad a new value.
+        """
         size = len(self.cache_data)
         size_list = len(self.list_uses)
         max_size = self.MAX_ITEMS
@@ -50,7 +63,11 @@ class LRUCache(BaseCaching):
                     self.list_uses[key] = item
 
     def get(self, key):
-        """"""
+        """
+        This method return a specific value in the
+        caching collection, if not exist,
+        return None
+        """
         try:
             if key in self.list_uses:
                 value = self.list_uses[key]

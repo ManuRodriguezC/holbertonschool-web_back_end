@@ -1,18 +1,30 @@
 #!/user/bin/env python3
-""""""
+"""MRU Cache"""
 from base_caching import BaseCaching
 
 
 class MRUCache(BaseCaching):
-    """"""
+    """
+    This class acts as the algorithm MRU
+    More recently uses, for can to add a new date, this need
+    delete a more recently used date.
+    """
 
     def __inti__(self):
-        """"""
+        """
+        This method init the class and inherit
+        of the parent BaseCaching
+        """
         super().__init__()
         self.last_use = None
 
     def put(self, key, item):
-        """"""
+        """
+        This method add a new date, with differents condictions
+        if teh size is lager tha the size allowed, this method need
+        found where value is more recently used and delele this and
+        ad a new value.
+        """
         size = len(self.cache_data)
         size_max = self.MAX_ITEMS
         if key is not None and item is not None:
@@ -27,7 +39,11 @@ class MRUCache(BaseCaching):
                 self.last_use = key
 
     def get(self, key):
-        """"""
+        """
+        This method return a specific value in the
+        caching collection, if not exist,
+        return None
+        """
         try:
             if key in self.cache_data:
                 self.last_use = key
