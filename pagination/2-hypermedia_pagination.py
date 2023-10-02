@@ -54,7 +54,10 @@ class Server:
         return page_data
 
     def get_hyper(self, page: int, page_size: int = 10) -> List[List]:
-        """"""
+        """
+        This mothod return a dictionary with some dates
+        of the page, size, total pages and others.
+        """
         data = self.get_page(page, page_size)
         pag = page_size if data != [] else 0
         total_page = math.ceil(len(self.dataset()) / page_size)
