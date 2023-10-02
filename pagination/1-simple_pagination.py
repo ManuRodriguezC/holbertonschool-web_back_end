@@ -27,7 +27,10 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        # Check if the page and page size are integers
+        """
+        This method return a dates in the
+        specific positions in the file
+        """
         assert isinstance(page, int), "page must be an integer"
         assert isinstance(page_size, int), "page_size must be an integer"
         assert page > 0, "page must be greater than 0"
