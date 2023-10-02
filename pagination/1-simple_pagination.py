@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-""""""
+"""Simple pagination"""
 import csv
 import math
 from typing import List
-import os
-
 
 
 class Server:
@@ -13,10 +11,12 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """This method init the Server class"""
         self.__dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
+        """
+        Cached dataset
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
@@ -39,7 +39,8 @@ class Server:
         # Use the len function to get the length of the dataset
         dataset_length = len(self.dataset())
 
-        # If the end index is greater than the dataset length, set it to the dataset length
+        # If the end index is greater than the
+        # dataset length, set it to the dataset length
         if end_index > dataset_length:
             end_index = dataset_length
 
@@ -51,7 +52,10 @@ class Server:
 
 
 def index_range(page, page_size):
-    """"""
+    """
+    This module return element is cvs
+    in the page and the size.
+    """
     index = page - 1
     start_index = index * page_size
     end_index = start_index + page_size
