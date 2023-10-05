@@ -3,7 +3,7 @@
 import bcrypt
 
 
-def hash_password(password: str):
+def hash_password(password: str) -> bytes:
     """
     This method encrypt the password,
     this never save in database in encode.
