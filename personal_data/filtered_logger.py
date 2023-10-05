@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Filtered logger"""
-from dotenv import load_dotenv
 from typing import List
 import mysql.connector
 import logging
@@ -69,11 +68,10 @@ def get_logger() -> logging.Logger:
     return logger
 
 
-def get_db():
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """
     This method connecto to database
     """
-    load_dotenv()
     db = mysql.connector.connect(
         user=os.getenv('PERSONAL_DATA_DB_USERNAME'),
         password=os.getenv('PERSONAL_DATA_DB_PASSWORD'),
