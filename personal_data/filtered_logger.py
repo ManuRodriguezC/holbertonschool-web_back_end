@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Filtered logger"""
+from dotenv import load_dotenv
 from typing import List
 import mysql.connector
 import logging
 import os
 import re
-
 
 PII_FIELDS = ("name", "email", "phone", "password", "ssn")
 
@@ -72,6 +72,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     """
     This method connecto to database
     """
+    load_dotenv()
     db = mysql.connector.connect(
         user=os.getenv('PERSONAL_DATA_DB_USERNAME'),
         password=os.getenv('PERSONAL_DATA_DB_PASSWORD'),
@@ -79,3 +80,26 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=os.getenv('PERSONAL_DATA_DB_NAME')
     )
     return db
+
+
+def main():
+    """"""
+    db = get_db()
+
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM users;")
+
+    logger = get_logger()
+
+    redac = RedactingFormatter.REDACTION
+    separ = RedactingFormatter.SEPARATOR
+
+    for row in cursor:
+        date = ""
+        for key, value in row.items():
+            date += f"{key}={value};"
+        logger.info(filter_datum(PII_FIELDS, redac, date, separ))
+
+
+if __name__ == '__main__':
+    main()
