@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Filtered logger"""
-import re
+from dotenv import load_dotenv
 from typing import List
+import mysql.connector
 import logging
+import os
+import re
 
 
 PII_FIELDS = ("name", "email", "phone", "password", "ssn")
@@ -64,3 +67,17 @@ def get_logger() -> logging.Logger:
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     return logger
+
+
+def get_db():
+    """
+    This method connecto to database
+    """
+    load_dotenv()
+    db = mysql.connector.connect(
+        user=os.getenv('PERSONAL_DATA_DB_USERNAME'),
+        password=os.getenv('PERSONAL_DATA_DB_PASSWORD'),
+        host=os.getenv('PERSONAL_DATA_DB_HOST'),
+        database=os.getenv('PERSONAL_DATA_DB_NAME')
+    )
+    return db
