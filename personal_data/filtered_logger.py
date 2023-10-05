@@ -5,6 +5,9 @@ from typing import List
 import logging
 
 
+PII_FIELDS = ("name", "email", "phone", "ip", "user_agent")
+
+
 class RedactingFormatter(logging.Formatter):
     """
     Redacting Formatter class
@@ -49,3 +52,8 @@ def filter_datum(fields: List[str],
         modify_msm = re.sub(pattern, r'\1' + f"{fiel}={redaction}", message)
         message = modify_msm
     return modify_msm
+
+
+def get_logger() -> logging.Logger:
+    """Return a object of type logging.Logger"""
+    return logging.Logger("user_data", logging.INFO)
