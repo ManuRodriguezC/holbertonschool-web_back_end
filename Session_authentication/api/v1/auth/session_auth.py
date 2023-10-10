@@ -32,5 +32,5 @@ class SessionAuth(Auth):
             return None
         try:
             return self.user_id_by_session_id[session_id]
-        except:
+        except Exception:
             return None
