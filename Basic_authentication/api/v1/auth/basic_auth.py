@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """ Module Basic Auth"""
 from .auth import Auth
+from models.user import User
+from models.base import Base
 from typing import TypeVar
 import base64
 
@@ -54,4 +56,14 @@ class BasicAuth(Auth):
                                      user_email: str, user_pwd:
                                          str) -> TypeVar('User'):
         """ This method check credentials of user"""
-        pass
+        if user_email is None or not isinstance(user_email, str):
+            return None
+        if user_pwd is None or not isinstance(user_pwd, str):
+            return None
+        users = User.all()
+        for user in users:
+            if user.email == user_email and user.is_valid_password(user_pwd):
+                return user
+            continue
+        return None
+
