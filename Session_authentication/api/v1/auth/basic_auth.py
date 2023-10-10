@@ -9,7 +9,6 @@ import base64
 
 class BasicAuth(Auth):
     """This class inherit from Auth"""
-    pass
 
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
