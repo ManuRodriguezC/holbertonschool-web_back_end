@@ -22,5 +22,5 @@ class Auth():
             return request.headers['Authorization']
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """"""
+        """This method check the current user"""
         return None
