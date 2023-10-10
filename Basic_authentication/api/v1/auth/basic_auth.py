@@ -66,3 +66,13 @@ class BasicAuth(Auth):
                 return user
             continue
         return None
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """This method check the current user"""
+        return self.user_object_from_credentials(
+            *self.extract_user_credentials(
+                self.decode_base64_authorization_header(
+                    self.extract_base64_authorization_header(request)
+                )
+            )
+        )
