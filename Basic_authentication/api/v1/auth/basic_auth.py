@@ -1,15 +1,17 @@
+#!/usr/bin/env python3
+""" Module Basic Auth"""
 from .auth import Auth
 from typing import TypeVar
 import base64
 
 
 class BasicAuth(Auth):
-    """"""
+    """This class inherit from Auth"""
     pass
 
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
-        """"""
+        """This method check an extract the authorization headers"""
         if authorization_header is None:
             return None
         if not isinstance(authorization_header, str):
@@ -22,7 +24,7 @@ class BasicAuth(Auth):
 
     def decode_base64_authorization_header(self,
                                            base64_authorization_header: str) -> str:
-        """"""
+        """This method decode the header authorization"""
         if base64_authorization_header is None:
             return None
         if not isinstance(base64_authorization_header, str):
@@ -34,7 +36,7 @@ class BasicAuth(Auth):
             return None
 
     def extract_user_credentials(self, decoded_base64_authorization_header: str) -> (str, str):
-        """"""
+        """This method extract the credentias of the authorization heaers"""
         if decoded_base64_authorization_header is None:
             return (None, None)
         if not isinstance(decoded_base64_authorization_header, str):
