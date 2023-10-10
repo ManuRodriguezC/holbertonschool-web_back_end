@@ -2,6 +2,7 @@
 """Module Auth"""
 from flask import request
 from typing import List, TypeVar
+from os import getenv
 
 
 class Auth():
@@ -20,3 +21,9 @@ class Auth():
             return None
         else:
             return request.headers['Authorization']
+
+    def session_cookie(self, request=None):
+        """This methos check and return a cookies id exist"""
+        if request is None:
+            return None
+        return request.cookies.get(getenv('SESSION_NAME'), None)
