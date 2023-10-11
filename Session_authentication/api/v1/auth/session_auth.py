@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Module Session Auth"""
 from api.v1.auth.auth import Auth
-import base64
+from models.user import User
 from uuid import uuid4
+from typing import Union
+import base64
 
 
 class SessionAuth(Auth):
@@ -34,3 +36,18 @@ class SessionAuth(Auth):
             return self.user_id_by_session_id[session_id]
         except Exception:
             return None
+
+    def current_user(self, request=None) -> Union[User, None]:
+        """This method check is the ssesion is login
+            if the session is on, take the id of teh user
+            an get the user with the id fro come return user
+        """
+        if request is None:
+            return None
+
+        session = self.session_cookie(request)
+
+        id = self.user_id_for_session_id(session)
+        user = User.get(id)
+
+        return user
