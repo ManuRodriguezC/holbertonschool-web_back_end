@@ -45,7 +45,7 @@ def login():
         return flask.jsonify({"error": "wrong password"}), 401
 
     # No other auth type should be allowed.
-    assert type(auth) == SessionAuth
+    assert isinstance(SessionAuth, auth)
 
     # Create user's session
     USER_SESSION_ID = auth.create_session(USER.id)
@@ -69,7 +69,7 @@ def logout() -> Tuple[flask.Response, int]:
     """
     from api.v1.app import auth
 
-    assert type(auth) == SessionAuth
+    assert isinstance(SessionAuth, auth)
 
     SESSION_DESTROYED: bool = auth.destroy_session(flask.request)
 
