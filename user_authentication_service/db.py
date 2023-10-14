@@ -49,9 +49,9 @@ class DB:
 
         return USER
 
-    def update_user(self, id: int, **kwargs) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """ Update user """
-        USER: User = self.find_user_by(id=id)
+        USER: User = self.find_user_by(id=user_id)
 
         if 'id' in kwargs.keys():
             raise ValueError("Cannot update 'id' of 'User'.")
