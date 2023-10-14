@@ -51,7 +51,6 @@ class DB:
 
     def update_user(self, id: int, **kwargs) -> None:
         """ Update user """
-        print(kwargs)
         USER: User = self.find_user_by(id=id)
 
         if 'id' in kwargs.keys():
