@@ -6,12 +6,13 @@ from sqlalchemy import String, Integer, Column
 
 Base = declarative_base()
 
+
 class User(Base):
-    """"""
+    """This class Create the structure of the User"""
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
-    email = Column(String)
-    hashed_password = Column(String)
-    session_id = Column(String)
-    reset_token = Column(String)
+    email = Column(String(250))
+    hashed_password = Column(String(250))
+    session_id = Column(String(250))
+    reset_token = Column(String(250))
