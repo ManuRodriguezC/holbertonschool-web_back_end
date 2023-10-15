@@ -25,7 +25,8 @@ def user() -> Tuple[Response, int]:
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
     else:
-        return jsonify({"email": "<registered email>", "message": "user created"}), 200
+        return jsonify({"email": "<registered email>",
+                        "message": "user created"}), 200
 
 
 if __name__ == "__main__":
