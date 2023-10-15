@@ -14,6 +14,7 @@ def welcome() -> Tuple[Response, int]:
     """ Welcome route """
     return jsonify({"message": "Bienvenue"}), 200
 
+
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def user() -> Tuple[Response, int]:
     """"""
