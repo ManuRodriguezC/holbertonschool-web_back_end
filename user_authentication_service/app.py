@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Route module for the API"""
-from flask import Flask, jsonify, Response, request
+from flask import Flask, jsonify, Response, request, abort, make_response
 from typing import Tuple, Optional
 from auth import Auth
 
@@ -16,7 +16,7 @@ def welcome() -> Tuple[Response, int]:
 
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
-def user() -> Tuple[Response, int]:
+def users() -> Tuple[Response, int]:
     """"""
     EMAIL: Optional[str] = request.form.get("email")
     PASSWORD: Optional[str] = request.form.get("password")
@@ -28,6 +28,26 @@ def user() -> Tuple[Response, int]:
     else:
         return jsonify({"email": "<registered email>",
                         "message": "user created"}), 200
+
+
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
+def login() -> Tuple[Response, int]:
+    """"""
+    EMAIL: Optional[str] = request.form.get("email")
+    PASSWORD: Optional[str] = request.form.get("password")
+
+    if not AUTH.valid_login(EMAIL, PASSWORD):
+        abort(401)
+
+    SESSION_ID = AUTH.create_session(EMAIL)
+
+    if SESSION_ID is None:
+        abort(401)
+
+    response: Response = make_response(jsonify({"email": EMAIL,
+                                                "message": "logged in"}))
+    response.set_cookie("session_id", SESSION_ID)
+    return response
 
 
 if __name__ == "__main__":
