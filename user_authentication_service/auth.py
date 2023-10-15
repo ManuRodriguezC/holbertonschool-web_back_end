@@ -6,6 +6,7 @@ from user import User
 import bcrypt
 import uuid
 
+
 class Auth:
     """Auth class to interact with the authentication database.
     """
