@@ -70,7 +70,24 @@ def logout():
         Auth.destroy_session(SESSION_ID)
     except NoResultFound:
         abort(403)
-    return redirect(url_for('bienvenue'))
+    return redirect(url_for('bienvenue')), 302
+
+
+@app.route("/profile/", methods=["GET"], strict_slashes=False)
+def profile() -> Response:
+    """ Take a profile user """
+    ID_COOKIE: Optional[str] = request.cookies.get("session_id")
+
+    if ID_COOKIE is None:
+        abort(403)
+
+    USER: Optional[User] = \
+        AUTH.get_user_from_session_id(ID_COOKIE)
+
+    if USER is None:
+        abort(403)
+
+    return jsonify({"email": USER.email})
 
 
 if __name__ == "__main__":
