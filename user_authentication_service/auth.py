@@ -57,6 +57,16 @@ class Auth:
         """ Destroy session of the user ID"""
         self._db.update_user(user_id, session_id=None)
 
+    def get_reset_password_token(self, email: str) -> str:
+        """ This method set and update the resent token """
+        try:
+            USER: User = self._db.find_user_by(email=email)
+        except ValueError:
+            raise ValueError(f"User with email={email} doesn't exist")
+        RESENT_TOKEN: str = _generate_uuid()
+        self._db.update_user(USER.id, resent_token=RESENT_TOKEN)
+        return RESENT_TOKEN
+
 
 def _generate_uuid() -> str:
     """Generate id unique """
