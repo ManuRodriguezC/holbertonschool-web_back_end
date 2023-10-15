@@ -61,7 +61,7 @@ class Auth:
         """ This method set and update the resent token """
         try:
             USER: User = self._db.find_user_by(email=email)
-        except ValueError:
+        except NoResultFound:
             raise ValueError(f"User with email={email} doesn't exist")
         RESENT_TOKEN: str = _generate_uuid()
         self._db.update_user(USER.id, resent_token=RESENT_TOKEN)
