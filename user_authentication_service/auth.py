@@ -40,12 +40,12 @@ class Auth:
         except NoResultFound:
             return None
         else:
-            ID_SESSION: str = _generete_uuid()
+            ID_SESSION: str = _generate_uuid()
             self._db.update_user(USER.id, session_id=ID_SESSION)
             return ID_SESSION
 
 
-def _generete_uuid() -> str:
+def _generate_uuid() -> str:
     """Generate id unique """
     return str(uuid.uuid4())
 
