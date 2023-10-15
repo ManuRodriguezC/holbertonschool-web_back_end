@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Module Auth """
 from sqlalchemy.orm.exc import NoResultFound
+from typing import Optional
 from db import DB
 from user import User
 import bcrypt
@@ -43,6 +44,14 @@ class Auth:
             ID_SESSION: str = _generate_uuid()
             self._db.update_user(USER.id, session_id=ID_SESSION)
             return ID_SESSION
+
+    def get_user_from_session_id(self, session_id: int) -> Optional[User]:
+        """"""
+        try:
+            USER: User = self._db.find_user_by(session_id=session_id)
+        except NoResultFound:
+            return None
+        return USER
 
 
 def _generate_uuid() -> str:
