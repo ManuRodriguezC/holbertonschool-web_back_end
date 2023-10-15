@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Route module for the API"""
-from flask import Flask, jsonify, Response, request, abort, make_response
+from flask import Flask, jsonify, Response, request, abort
+from flask import make_response, redirect, url_for
 from typing import Tuple, Optional
+from sqlalchemy.orm.exc import NoResultFound
 from auth import Auth
+from user import User
 
 
 AUTH = Auth()
@@ -48,6 +51,26 @@ def login() -> Tuple[Response, int]:
                                                 "message": "logged in"}))
     response.set_cookie("session_id", SESSION_ID)
     return response
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """This route Delete the session ID"""
+    SESSION_ID: Optional[str] = request.cookies.get("session_id")
+
+    if SESSION_ID is None:
+        abort(403)
+
+    USER: Optional[User] = Auth.get_user_from_session_id(SESSION_ID)
+
+    if USER is None:
+        abort(403)
+
+    try:
+        Auth.destroy_session(SESSION_ID)
+    except NoResultFound:
+        abort(403)
+    return redirect(url_for('bienvenue'))
 
 
 if __name__ == "__main__":
