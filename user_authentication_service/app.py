@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
-def welcome() -> Tuple[Response, int]:
+def bienvenue() -> Tuple[Response, int]:
     """ Welcome route """
     return jsonify({"message": "Bienvenue"}), 200
 
