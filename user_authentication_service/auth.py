@@ -4,7 +4,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from db import DB
 from user import User
 import bcrypt
-
+import uuid
 
 class Auth:
     """Auth class to interact with the authentication database.
@@ -31,6 +31,10 @@ class Auth:
             return False
         else:
             return bcrypt.checkpw(password.encode(), USER.hashed_password)
+
+    def _generete_uuid(self) -> str:
+        """Generate id unique """
+        return uuid.uuid4()
 
 
 def _hash_password(password: str) -> bytes:
