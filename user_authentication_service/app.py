@@ -8,9 +8,11 @@ app = flask.Flask(__name__)
 app.register_blueprint()
 
 
-@app.route('/', methods=['GET'], strict_slaches=False)
-def welcome() -> Tuple[flask.Response, int]:
-    """ Welcome route """
+@app.route("/", methods=["GET"], strict_slashes=False)
+def bienvenue() -> Tuple[flask.Response, int]:
+    """
+    Expects GET with nothing,
+    """
     return flask.jsonify({"message": "Bienvenue"}), 200
 
 
