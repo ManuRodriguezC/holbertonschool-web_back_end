@@ -10,7 +10,7 @@ app.register_blueprint()
 @app.route('/', methods=['GET'], strict_slaches=False)
 def welcome() -> str:
     """ Welcome route """
-    return jsonify({"message": "Bienvenue"})
+    return jsonify({"message": "Bienvenue"}), 200
 
 
 if __name__ == "__main__":
