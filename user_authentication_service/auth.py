@@ -32,6 +32,17 @@ class Auth:
         else:
             return bcrypt.checkpw(password.encode(), USER.hashed_password)
 
+    def create_session(self, email: str) -> str:
+        """ Create ID sesion when the user start session"""
+        try:
+            USER: User = self._db.find_user_by(email=email)
+        except NoResultFound:
+            return None
+        else:
+            ID_SESSION: str = _generete_uuid()
+            self._db.update_user(USER.id, session_id=ID_SESSION)
+            return ID_SESSION
+
 
 def _generete_uuid() -> str:
     """Generate id unique """
