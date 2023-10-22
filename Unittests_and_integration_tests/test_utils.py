@@ -53,7 +53,7 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(TestCase):
-    """"""
+    """This class conteint the tests of memoize """
 
     def test_memoize(self):
         """ This class and test uses memoize utils.
