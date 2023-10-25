@@ -17,7 +17,7 @@ babel = Babel(app, Config.BABEL_DEFAULT_LOCALE, Config.BABEL_DEFAULT_TIMEZONE)
 
 
 @babel.localselector
-def get_local():
+def get_locale():
     """ This function accept the best lenguages of the web"""
     return request.accept_languages.best_match(Config.LANGUAGES)
 
