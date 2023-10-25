@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ This module create a flask app"""
-from flask import Flask, render_template
-from flask_babel import Babel
+from flask import Flask, render_template, request
+from flask_babel import Babel, get_locale
 
 
 class Config():
@@ -14,6 +14,12 @@ class Config():
 app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel(app, Config.BABEL_DEFAULT_LOCALE, Config.BABEL_DEFAULT_TIMEZONE)
+
+
+@babel.localselector
+def get_local():
+    """ This function accept the best lenguages of the web"""
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route("/")
