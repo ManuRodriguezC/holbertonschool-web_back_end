@@ -41,6 +41,7 @@ def get_locale():
         app.config["LANGUAGES"]
     )
 
+
 def get_user() -> Union[dict, None]:
     """
     Return a user id, id the login_as exist in to users
@@ -54,12 +55,13 @@ def get_user() -> Union[dict, None]:
 
     return users.get(ID_INT)
 
+
 @app.before_request
 def before_request():
     """ If user exist, return you datas """
     USER: Union[dict, None] = get_user()
     flask.g.user = USER
-    
+
 
 @app.route("/")
 def index():
