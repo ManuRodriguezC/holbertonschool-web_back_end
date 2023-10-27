@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ This module create a flask app"""
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, gettext as _
 from typing import Union
 
 
@@ -14,16 +14,14 @@ class Config():
 
 app = Flask(__name__)
 app.config.from_object(Config)
-babel = Babel(
-    app,
-    Config.BABEL_DEFAULT_LOCALE,
-    Config.BABEL_DEFAULT_TIMEZONE
-)
+babel = Babel()
+babel.init_app(app, default_locale=Config.BABEL_DEFAULT_LOCALE, default_timezone=Config.BABEL_DEFAULT_TIMEZONE)
+
 
 def get_locale():
     """ This function accept the best lenguages of the web"""
     LENGUAGE: Union[str, None] = request.args.get("locale", None)
-    if LENGUAGE is None and LENGUAGE in app.config["LANGUAGES"]:
+    if LENGUAGE is not None and LENGUAGE in app.config["LANGUAGES"]:
         return LENGUAGE
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
