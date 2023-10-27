@@ -15,7 +15,8 @@ class Config():
 app = Flask(__name__)
 app.config.from_object(Config)
 babel = Babel()
-babel.init_app(app, default_locale=Config.BABEL_DEFAULT_LOCALE, default_timezone=Config.BABEL_DEFAULT_TIMEZONE)
+babel.init_app(app, default_locale=Config.BABEL_DEFAULT_LOCALE,
+               default_timezone=Config.BABEL_DEFAULT_TIMEZONE)
 
 
 def get_locale():
