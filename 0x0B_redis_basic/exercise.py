@@ -24,13 +24,21 @@ class Cache():
         self._redis.set(key, data)
         return key
 
-    def get(self, key: Union[str, int, float, bytes], fn) -> Union[str, int, float, bytes]:
+    def get(self, key: Union[str, int, float, bytes], fn=None) -> Union[str, int, float, bytes]:
         value = self._redis.get(key)
-        return value
+        if value is None:
+            return None
+        if fn is None:
+            return None
+        try:
+            return fn(value)
+        except Exception as a:
+            return None
 
-    def get_str(self):
+    def get_str(self, key):
         """"""
-        pass
+        return self.get(key, fn=lambda d: d.decode("utf-8"))
 
-    def get_int(self):
+    def get_int(self, key):
         """"""
+        return self.get(key, fn=int)
