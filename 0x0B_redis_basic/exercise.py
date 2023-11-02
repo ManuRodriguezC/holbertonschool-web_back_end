@@ -27,11 +27,9 @@ class Cache():
     def get(self, key: Union[str, int, float, bytes], fn=None) -> Union[str, int, float, bytes]:
         value = self._redis.get(key)
         if value is None:
-            print("Test 1")
             return None
         if fn is None:
-            print("Test 2")
-            return None
+            return value
         try:
             print("Test 3")
             return fn(value)
@@ -39,19 +37,15 @@ class Cache():
             print("Test 4")
             return value
         except Exception as a:
-            print("Test 5")
             return None
 
     def get_str(self, key):
         """"""
-        print("Test 6")
         return self.get(key, fn=lambda d: d.decode("utf-8"))
 
     def get_int(self, key):
         """"""
         value = self.get(key)
         if isinstance(value, bytes):
-            print("Test 7")
             return value
-        print("Test 8")
         return int(value)
