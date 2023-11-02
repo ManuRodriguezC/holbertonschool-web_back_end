@@ -6,7 +6,9 @@ import uuid
 
 class Cache():
     """ This class create a redis connection"""
-    _redis = redis.Redis()
+    def __init__(self):
+        """ The constructure start conection with redis. """
+        self._redis = redis.Redis()
 
     def store(self, data: str) -> str:
         """
