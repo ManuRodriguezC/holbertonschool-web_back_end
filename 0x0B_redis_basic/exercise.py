@@ -2,7 +2,7 @@
 """ Module to connect with redis """
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable as fn
 
 
 class Cache():
@@ -23,3 +23,14 @@ class Cache():
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
+
+    def get(self, key: Union[str, int, float, bytes], fn) -> Union[str, int, float, bytes]:
+        value = self._redis.get(key)
+        return value
+
+    def get_str(self):
+        """"""
+        pass
+
+    def get_int(self):
+        """"""
