@@ -32,6 +32,8 @@ class Cache():
             return None
         try:
             return fn(value)
+        except ValueError:
+            return value
         except Exception as a:
             return None
 
@@ -41,4 +43,7 @@ class Cache():
 
     def get_int(self, key):
         """"""
-        return self.get(key, fn=int)
+        value = self.get(key)
+        if isinstance(value, bytes):
+            return value
+        return int(value)
