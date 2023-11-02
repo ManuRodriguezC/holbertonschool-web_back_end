@@ -33,8 +33,7 @@ class Cache():
         try:
             return fn(value)
         except ValueError:
-            print("test")
-            return ValueError
+            return "ValueError"
         except Exception as a:
             return None
 
