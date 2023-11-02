@@ -31,11 +31,9 @@ class Cache():
         if fn is None:
             return value
         try:
-            print("Test 3")
             return fn(value)
         except ValueError:
-            print("Test 4")
-            return value
+            return ValueError
         except Exception as a:
             return None
 
