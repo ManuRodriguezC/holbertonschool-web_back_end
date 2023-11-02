@@ -2,6 +2,7 @@
 """ Module to connect with redis """
 import redis
 import uuid
+from typing import Union
 
 
 class Cache():
@@ -9,8 +10,9 @@ class Cache():
     def __init__(self):
         """ The constructure start conection with redis. """
         self._redis = redis.Redis()
+        self._redis.flushdb()
 
-    def store(self, data: str) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         This method created the set with key and value.
         Parameters
