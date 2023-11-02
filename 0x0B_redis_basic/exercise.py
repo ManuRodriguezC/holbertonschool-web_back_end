@@ -34,8 +34,7 @@ class Cache():
             return fn(value)
         except ValueError:
             return "ValueError"
-        except Exception as a:
-            return None
+
 
     def get_str(self, key):
         """"""
