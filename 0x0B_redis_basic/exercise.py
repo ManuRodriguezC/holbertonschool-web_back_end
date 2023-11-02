@@ -33,7 +33,7 @@ class Cache():
         try:
             return fn(value)
         except ValueError:
-            return "ValueError"
+            raise ValueError
 
 
     def get_str(self, key):
