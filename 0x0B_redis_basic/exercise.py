@@ -61,13 +61,7 @@ class Cache():
     @call_history
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
-        """
-        This method created the set with key and value.
-        Parameters
-        ----------
-        data: String
-            If the value of the key to save in redis db.
-        """
+        """ This method created the set with key and value. """
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
