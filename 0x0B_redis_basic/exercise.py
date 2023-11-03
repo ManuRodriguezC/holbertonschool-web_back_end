@@ -2,15 +2,18 @@
 """ Module to connect with redis """
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable
 from functools import wraps
 
 
-def count_calls(method):
-    """"""
+def count_calls(method: Callable) -> Callable:
+    """
+    This function create key value qualname for
+    count the number to called Cache clas
+    """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """"""
+        """ When call the class, the key incremment the value 1"""
         key = method.__qualname__
         self._redis.incr(key)
         return method(self, *args, **kwargs)
@@ -22,7 +25,7 @@ class Cache():
     def __init__(self):
         """ The constructure start conection with redis. """
         self._redis = redis.Redis()
-        #self._redis.flushdb()
+        self._redis.flushdb()
 
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
@@ -37,7 +40,10 @@ class Cache():
         self._redis.set(key, data)
         return key
 
-    def get(self, key: Union[str, int, float, bytes], fn=None) -> Union[str, int, float, bytes]:
+    def get(self, key: Union[str,
+                             int,
+                             float,
+                             bytes], fn=None) -> Union[str, int, float, bytes]:
         value = self._redis.get(key)
         if value is None:
             return None
@@ -47,7 +53,6 @@ class Cache():
             return fn(value)
         except ValueError:
             raise ValueError
-
 
     def get_str(self, key):
         """"""
