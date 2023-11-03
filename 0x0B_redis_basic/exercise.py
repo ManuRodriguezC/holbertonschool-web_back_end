@@ -5,18 +5,15 @@ import uuid
 from typing import Union
 from functools import wraps
 
-def count_calls(f):
+
+def count_calls(method):
     """"""
-    @wraps(f)
-    def wrapper(*args, **kwargs):
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
         """"""
-        key = f.__qualname__
-        count = cache.get(key)
-        if count is None:
-            count = 0
-        count += 1
-        cache.store(count)
-        return f(*args, **kwargs)
+        key = method.__qualname__
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
     return wrapper
 
 
