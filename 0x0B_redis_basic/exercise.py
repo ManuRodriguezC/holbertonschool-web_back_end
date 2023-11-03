@@ -11,11 +11,11 @@ def count_calls(f):
     def wrapper(*args, **kwargs):
         """"""
         key = f.__qualname__
-        count = Cache.get(key)
+        count = cache.get(key)
         if count is None:
             count = 0
         count += 1
-        Cache.store(count)
+        cache.store(count)
         return f(*args, **kwargs)
     return wrapper
 
@@ -25,7 +25,7 @@ class Cache():
     def __init__(self):
         """ The constructure start conection with redis. """
         self._redis = redis.Redis()
-        self._redis.flushdb()
+        #self._redis.flushdb()
 
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
