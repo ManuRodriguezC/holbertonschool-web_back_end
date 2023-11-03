@@ -7,14 +7,14 @@ from functools import wraps
 
 
 def replay(method: Callable) -> None:
-    """"""
+    """ This function return all elements create a one key"""
     redis_db = redis.Redis()
-    
+
     key_inputs = method.__qualname__ + ":inputs"
     key_outputs = method.__qualname__ + ":outputs"
 
-    inputs: List[bytes] = redis_db.lrange(key_inputs, 0 , -1)
-    outputs: List[bytes] = redis_db.lrange(key_outputs, 0 , -1)
+    inputs: List[bytes] = redis_db.lrange(key_inputs, 0, -1)
+    outputs: List[bytes] = redis_db.lrange(key_outputs, 0, -1)
 
     print(f"{method.__qualname__} was called {len(inputs)} time")
 
@@ -24,9 +24,8 @@ def replay(method: Callable) -> None:
         print(f"{method.__qualname__}(*{int}) -> {out}")
 
 
-
 def call_history(method: Callable) -> Callable:
-    """"""
+    """This decorator return the values of the list"""
     def wrapper(self, *args, **kwargs):
         """"""
         keyint = method.__qualname__ + ":inputs"
