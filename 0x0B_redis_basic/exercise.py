@@ -5,6 +5,20 @@ import uuid
 from typing import Union
 from functools import wraps
 
+def count_calls(func):
+    """"""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        """"""
+        key = func.__qualname__
+        count = Cache.get(key)
+        if count is None:
+            count = 0
+        count += 1
+        Cache.store(count)
+        return func(*args, **kwargs)
+    return wrapper
+
 
 class Cache():
     """ This class create a redis connection"""
@@ -12,20 +26,6 @@ class Cache():
         """ The constructure start conection with redis. """
         self._redis = redis.Redis()
         self._redis.flushdb()
-
-    def count_calls(func):
-        """"""
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            """"""
-            key = func.__qualname__
-            count = Cache.get(key)
-            if count is None:
-                count = 0
-            count += 1
-            Cache.store(count)
-            return func(*args, **kwargs)
-        return wrapper
 
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
@@ -62,9 +62,3 @@ class Cache():
         if isinstance(value, bytes):
             return value
         return int(value)
-
-    def __qualname__(self):
-        """"""
-        count = 0
-        count += 1
-        return count
