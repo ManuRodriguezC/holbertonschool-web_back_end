@@ -2,15 +2,34 @@
 """ Module to connect with redis """
 import redis
 import uuid
-from typing import Union, Callable
+from typing import Union, Callable, List
 from functools import wraps
+
+
+def replay(method: Callable) -> None:
+    """"""
+    redis_db = redis.Redis()
+    
+    key_inputs = method.__qualname__ + ":inputs"
+    key_outputs = method.__qualname__ + ":outputs"
+
+    inputs: List[bytes] = redis_db.lrange(key_inputs, 0 , -1)
+    outputs: List[bytes] = redis_db.lrange(key_outputs, 0 , -1)
+
+    print(f"{method.__qualname__} was called {len(inputs)} time")
+
+    for int, out in zip(inputs, outputs):
+        int = int.decode()
+        out = out.decode()
+        print(f"{method.__qualname__}(*{int}) -> {out}")
+
 
 
 def call_history(method: Callable) -> Callable:
     """"""
     def wrapper(self, *args, **kwargs):
         """"""
-        keyint = method.__qualname__+":inputs"
+        keyint = method.__qualname__ + ":inputs"
         keyout = method.__qualname__ + ":outputs"
         self._redis.rpush(keyint, *args)
         outputs = method(self, *args, **kwargs)
