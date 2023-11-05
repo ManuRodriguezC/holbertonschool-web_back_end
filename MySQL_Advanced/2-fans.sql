@@ -1,0 +1,1 @@
+SELECT origin, fans FROM metal_bands;
