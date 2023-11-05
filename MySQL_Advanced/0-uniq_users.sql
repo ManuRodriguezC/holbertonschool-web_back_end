@@ -1,7 +1,4 @@
-/*
-    This file create a users table
-    Contein three parameters, id, email and name
-*/
+-- Create a users table (id, email, name)
 CREATE TABLE IF NOT EXISTS users (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
