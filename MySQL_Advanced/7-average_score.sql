@@ -1,12 +1,18 @@
 -- Creates a stored procedure ComputeAverageScoreForUser that computes and store the average score for a student. Note: An average score can be a decimal
-DELIMITER $$
-CREATE PROCEDURE ComputeAverageScoreForUser (
-    user_id INT NOT NULL
-)
+DELIMITER //
+CREATE PROCEDURE ComputeAverageScoreForUser(IN user_id INT)
 BEGIN
-    UPDATE users SET average_score = (
-        SELECT AVG(score) FROM corrections
-        WHERE user_id=user_id
-    ) WHERE id=user_id;
-END$$
+ DECLARE total_score INT DEFAULT 0;
+ DECLARE num_projects INT DEFAULT 0;
+
+ SELECT SUM(score), COUNT(*) INTO total_score, num_projects
+ FROM corrections
+ WHERE user_id = user_id;
+
+ IF num_projects > 0 THEN
+   UPDATE users
+   SET average_score = total_score / num_projects
+   WHERE id = user_id;
+ END IF;
+END; //
 DELIMITER ;
