@@ -1,1 +1,2 @@
-db.school.insertOne({name: "Udemy"})
+// This command create a school collection and add one element
+db.school.insertOne({name: "Holberton School"})

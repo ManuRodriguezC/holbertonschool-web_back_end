@@ -1,1 +1,2 @@
+// This command created or select databases if this exist
 use my_db

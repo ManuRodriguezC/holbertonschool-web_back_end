@@ -1,1 +1,2 @@
+// This command return all elements in school collecion.
 db.school.find()
