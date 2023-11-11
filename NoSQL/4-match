@@ -1,0 +1,2 @@
+// This command call all documments with Holberton school
+db.school.find({"name": "Holberton school"})
