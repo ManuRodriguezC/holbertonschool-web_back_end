@@ -1,1 +1,2 @@
+// This command show all databases in Mongo
 show databases
