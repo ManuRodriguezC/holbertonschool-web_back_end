@@ -5,10 +5,11 @@ from pymongo import MongoClient
 
 methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 client = MongoClient('mongodb://127.0.0.1:27017')
-db = client.logs.nginx
+db = client.logs.nginxx
 
 count = db.count_documents({})
-if db:
+
+if count > 0:
     print(f"{count} logs")
 
     print("Methods:")
