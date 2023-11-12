@@ -9,7 +9,7 @@ db = client.logs.nginxx
 
 count = db.count_documents({})
 
-if count > 0:
+if count >= 0:
     print(f"{count} logs")
 
     print("Methods:")
