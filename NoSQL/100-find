@@ -1,0 +1,2 @@
+// This command find the documents start with specific name
+db.school.find({"name": /^Holberton/})
