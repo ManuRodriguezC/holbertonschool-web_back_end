@@ -17,4 +17,6 @@ if "nginx" in db.list_collection_names():
 
     for method in methods:
         met = collection.count_documents({"method": method})
-        print(f"    method {method}: {met}")   
+        print(f"    method {method}: {met}")
+    status = collection.count_documents({"method": "GET", "path": "/status"})
+    print(f"{status} status check")
