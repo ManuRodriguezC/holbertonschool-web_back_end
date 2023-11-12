@@ -8,10 +8,11 @@ client = MongoClient('mongodb://127.0.0.1:27017')
 db = client.logs.nginx
 
 count = db.count_documents({})
-print(f"{count} logs")
+if db:
+    print(f"{count} logs")
 
-print("Methods:")
+    print("Methods:")
 
-for method in methods:
-    met = db.count_documents({"method": method})
-    print(f"    method {method}: {met}")   
+    for method in methods:
+        met = db.count_documents({"method": method})
+        print(f"    method {method}: {met}")   
