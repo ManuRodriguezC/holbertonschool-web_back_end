@@ -5,15 +5,17 @@ from pymongo import MongoClient
 
 methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 client = MongoClient('mongodb://127.0.0.1:27017')
-db = client.logs.nginx
+db = client.logs
+if "nginx" in db.list_collection_names():  
+    collection = db.nginx
 
-count = db.count_documents({})
+    count = collection.count_documents({})
 
-if count >= 0:
-    print(f"{count} logs")
+    if count >= 0:
+        print(f"{count} logs")
 
-    print("Methods:")
+        print("Methods:")
 
-    for method in methods:
-        met = db.count_documents({"method": method})
-        print(f"    method {method}: {met}")   
+        for method in methods:
+            met = collection.count_documents({"method": method})
+            print(f"    method {method}: {met}")   
