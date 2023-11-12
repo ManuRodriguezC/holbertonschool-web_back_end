@@ -23,6 +23,9 @@ module.exports = {
     'sourceType': 'module'
   },
   'rules': {
+    'no-var': 'error',
+    'prefer-const': 'error',
+    'no-unused-vars': 'error',
     'indent': [
       'error',
       2
