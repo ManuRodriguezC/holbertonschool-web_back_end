@@ -11,11 +11,10 @@ if "nginx" in db.list_collection_names():
 
     count = collection.count_documents({})
 
-    if count >= 0:
-        print(f"{count} logs")
+    print(f"{count} logs")
 
-        print("Methods:")
+    print("Methods:")
 
-        for method in methods:
-            met = collection.count_documents({"method": method})
-            print(f"    method {method}: {met}")   
+    for method in methods:
+        met = collection.count_documents({"method": method})
+        print(f"    method {method}: {met}")   
