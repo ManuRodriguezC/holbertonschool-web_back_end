@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "dev": "node",
-    "test": "jest"
+    "test": "jest",
+    "eslint": "eslint"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
