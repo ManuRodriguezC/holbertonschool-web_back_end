@@ -1,4 +1,4 @@
-// This command call elements with name: "school" and add new attribute
+// This command call elements with name: "school" and add new attribute, updateMany
 db.school.update(
    { "name": "Holberton school" },
    { $set: { address: "972 Mission street" } }
