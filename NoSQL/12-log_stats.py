@@ -9,7 +9,7 @@ db = client.logs
 if "nginx" in db.list_collection_names(): 
     collection = db.nginx
 
-    count = collection.count_documents({})
+    count = collection.count_documents({}) if collection.count_documents({}) != 0 else 0
 
     print(f"{count} logs")
 
