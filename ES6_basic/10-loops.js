@@ -1,7 +1,7 @@
 export default function appendToEachArrayValue(array, appendString) {
-  const list = []
+  const list = [];
   for (const date of array) {
-    list.push(appendString + date)
+    list.push(appendString + date);
   }
 
   return list;
