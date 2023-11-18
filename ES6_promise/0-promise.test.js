@@ -1,6 +1,9 @@
-import getResponseFromAPI from "./0-promise.js";
+import getFullResponseFromAPI from './1-promise';
 
-test("getResponseFromAPI returns a promise", () => {
-  const response = getResponseFromAPI();
-  expect(response instanceof Promise).toBe(true);
+test("getFullResponseFromAPI resolves correctly", () => {
+    const successResponse = getFullResponseFromAPI(true);
+    return expect(successResponse).resolves.toEqual({
+      status: 200,
+      body: "Success"
+    });
 });
