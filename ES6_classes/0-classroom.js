@@ -12,4 +12,3 @@ export default class ClassRoom {
     return this._maxStudentsSize;
   }
 }
- 
