@@ -10,6 +10,6 @@ export default function updateStudentGradeByCity(students, city, newGrades) {
       const newGrade = gradesMap[student.id] || 'N/A';
       return { ...student, grade: newGrade };
     });
- 
+
   return updatedStudents;
 }
