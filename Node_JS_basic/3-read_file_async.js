@@ -9,12 +9,12 @@ function studentsTextOutput(data) {
   const studentsCsNames = students
     .filter((student) => student[3] === 'CS')
     .map((student) => student[0]);
-  result.push(`Number of students in CS: ${studentsCsNames.length}: ${studentsCsNames.join(', ')}`);
+  result.push(`Number of students in CS: ${studentsCsNames.length}. List: ${studentsCsNames.join(', ')}`);
 
   const studentsSweNames = students
     .filter((student) => student[3] === 'SWE')
     .map((student) => student[0]);
-  result.push(`Number of students in SWE: ${studentsSweNames.length}: ${studentsSweNames.join(', ')}`);
+  result.push(`Number of students in SWE: ${studentsSweNames.length}. List: ${studentsSweNames.join(', ')}`);
 
   return result;
 }
