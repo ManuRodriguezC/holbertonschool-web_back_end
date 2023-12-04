@@ -33,13 +33,13 @@ describe('calculateNumber', () => {
     assert.equal(calculateNumber(-2, -2.5), -4);
   });
   it('rounds ``a`` and ``b``, like ``Math.round``, before adding them to eachother', () => {
-    assert.equal(calculateNumber(1.25, 1.25), 3);
-    assert.equal(calculateNumber(1.5, 1.5), 3);
+    assert.equal(calculateNumber(1.25, 1.25), 2);
+    assert.equal(calculateNumber(1.5, 1.5), 4);
     assert.equal(calculateNumber(-1.25, -1.25), -2);
-    assert.equal(calculateNumber(-1.5, -1.5), -3);
-    assert.equal(calculateNumber(2.25, 2.25), 5);
-    assert.equal(calculateNumber(2.5, 2.5), 5);
+    assert.equal(calculateNumber(-1.5, -1.5), -2);
+    assert.equal(calculateNumber(2.25, 2.25), 4);
+    assert.equal(calculateNumber(2.5, 2.5), 6);
     assert.equal(calculateNumber(-2.25, -2.25), -4);
-    assert.equal(calculateNumber(-2.5, -2.5), -5);
+    assert.equal(calculateNumber(-2.5, -2.5), -4);
   });
 });
