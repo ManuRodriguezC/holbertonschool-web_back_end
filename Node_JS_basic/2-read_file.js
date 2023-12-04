@@ -15,12 +15,12 @@ function countStudents(path) {
   const studentsCsNames = students
     .filter((student) => student[3] === 'CS')
     .map((student) => student[0]);
-  console.log(`Number of students in CS: ${studentsCsNames.length}: ${studentsCsNames.join(', ')}`);
+  console.log(`Number of students in CS: ${studentsCsNames.length}. List: ${studentsCsNames.join(', ')}`);
 
   const studentsSweNames = students
     .filter((student) => student[3] === 'SWE')
     .map((student) => student[0]);
-  console.log(`Number of students in SWE: ${studentsSweNames.length}: ${studentsSweNames.join(', ')}`);
+  console.log(`Number of students in SWE: ${studentsSweNames.length}. List: ${studentsSweNames.join(', ')}`);
 }
 
 module.exports = countStudents;
