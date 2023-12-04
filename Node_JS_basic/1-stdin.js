@@ -1,4 +1,4 @@
-const rl = require('node:readline');
+const rl = require('readline');
 
 rl.createInterface({
   input: process.stdin,
